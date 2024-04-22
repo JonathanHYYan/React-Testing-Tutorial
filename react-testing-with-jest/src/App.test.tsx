@@ -11,3 +11,4 @@ test('renders learn react link', () => {
   // Method from jest with a matcher function to test exertion
   expect(linkElement).toBeInTheDocument();
 });
+
