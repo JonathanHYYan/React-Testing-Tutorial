@@ -15,7 +15,7 @@ import { Greet } from "./greet"
  * It should render hello followed by the naem
  */
 
-test('Greet renders correctly', ()=> {
+test.skip('Greet renders correctly', ()=> {
     render(<Greet />);
     const textElement = screen.getByText('Hello')
     expect(textElement).toBeInTheDocument();
@@ -24,9 +24,14 @@ test('Greet renders correctly', ()=> {
 /** 
  * React testing library on run fires Jest Watch Mode which will test only the tests that have changes to keep the
  * test time as effecient as possible
- */ 
+ */
 
-test('Greet renders a name', ()=>{
+/**
+ * When you run npm test you can press w to watch usage and select a variety of testing options as well
+ * as add methods to your test method such as skip and only.
+ */
+
+test.only('Greet renders a name', ()=>{
     render(<Greet name='Mortal'/>)
     const textElement = screen.getByText('Hello Mortal')
     expect(textElement).toBeInTheDocument()
