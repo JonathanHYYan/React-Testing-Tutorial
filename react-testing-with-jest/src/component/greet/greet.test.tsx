@@ -21,7 +21,12 @@ test('Greet renders correctly', ()=> {
     expect(textElement).toBeInTheDocument();
 })
 
-test('Greet renders with a name', ()=>{
+/** 
+ * React testing library on run fires Jest Watch Mode which will test only the tests that have changes to keep the
+ * test time as effecient as possible
+ */ 
+
+test('Greet renders a name', ()=>{
     render(<Greet name='Mortal'/>)
     const textElement = screen.getByText('Hello Mortal')
     expect(textElement).toBeInTheDocument()
