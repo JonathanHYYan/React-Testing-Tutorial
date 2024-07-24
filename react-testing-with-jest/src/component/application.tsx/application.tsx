@@ -7,7 +7,7 @@ export const Application = () => {
     <form>
       <div>
         <label htmlFor="name">Name</label>
-        <input type="text" id="name" placeholder="fullname"/>
+        <input type="text" id="name" placeholder="fullname" value="Malle" onChange={()=>{}}/>
       </div>
       <div>
         <label htmlFor="bio">Bio</label>
