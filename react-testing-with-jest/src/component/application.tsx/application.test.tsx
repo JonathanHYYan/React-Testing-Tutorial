@@ -14,11 +14,17 @@ describe('Application', ()=>{
         });
         expect(nameElement).toBeInTheDocument();
 
+        // A Secondary method of locating dom element is getByLabelText
+        // When multiple elements share label innerHTML we can add a 
+        // Selector option.
+        const nameElementbyLabel = screen.getByLabelText('Name', {selector: 'input'});
+        expect(nameElementbyLabel).toBeInTheDocument();
+
         const bioElement = screen.getByRole('textbox', {
             name: 'Bio',
         });
         expect(bioElement).toBeInTheDocument();
-
+ 
         const pageHeading = screen.getByRole('heading', {
             level: 1
         });
@@ -34,6 +40,9 @@ describe('Application', ()=>{
 
         const termsElement = screen.getByRole("checkbox");
         expect(termsElement).toBeInTheDocument();
+
+        const termsElementbByLabel = screen.getByLabelText('I agree to the terms and conditions');
+        expect(termsElementbByLabel).toBeInTheDocument();
 
         const submitButtonElement = screen.getByRole("button");
         expect(submitButtonElement).toBeInTheDocument();
