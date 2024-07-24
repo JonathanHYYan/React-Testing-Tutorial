@@ -4,8 +4,30 @@ import { Application } from "./application";
 describe('Application', ()=>{
     test('renders correctly', ()=>{
         render(<Application/>);
-        const nameElement = screen.getByRole('textbox')
+        // getByRole can take an additional array where you specify which
+        // screen element you are looking for:
+        // label of the form element i.e. in this case the Name innerHTML,
+        // Text content of a button
+        // Or the value of an aria-lable attribute.
+        const nameElement = screen.getByRole('textbox', {
+            name:'Name',
+        });
         expect(nameElement).toBeInTheDocument();
+
+        const bioElement = screen.getByRole('textbox', {
+            name: 'Bio',
+        });
+        expect(bioElement).toBeInTheDocument();
+
+        const pageHeading = screen.getByRole('heading', {
+            level: 1
+        });
+        expect(pageHeading).toBeInTheDocument();
+
+        const sectionHeading = screen.getByRole('heading', {
+            level: 2
+        });
+        expect(sectionHeading).toBeInTheDocument();
 
         const jobLocationElement = screen.getByRole("combobox");
         expect(jobLocationElement).toBeInTheDocument();
