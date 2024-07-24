@@ -20,6 +20,11 @@ describe('Application', ()=>{
         const nameElementbyLabel = screen.getByLabelText('Name', {selector: 'input'});
         expect(nameElementbyLabel).toBeInTheDocument();
 
+        // Another secondary method of locating a dom element for
+        // Testing is getByPlaceholderText
+        const nameElementByPlaceholder = screen.getByPlaceholderText('fullname');
+        expect(nameElementByPlaceholder).toBeInTheDocument();
+
         const bioElement = screen.getByRole('textbox', {
             name: 'Bio',
         });
