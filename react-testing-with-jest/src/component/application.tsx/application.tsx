@@ -6,6 +6,7 @@ export const Application = () => {
     <p>All fields are mandatory</p>
     <span title="close">X</span>
     <img src="https://via.placeholder.com/150" alt="alt message here"/>
+    <div data-testid="custom-element">Custom HTML Element</div>
     <form>
       <div>
         <label htmlFor="name">Name</label>
