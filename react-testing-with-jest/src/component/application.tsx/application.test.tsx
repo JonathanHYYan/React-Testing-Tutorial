@@ -34,6 +34,11 @@ describe('Application', ()=>{
         const imageElement = screen.getByAltText('alt message here');
         expect(imageElement).toBeInTheDocument();
 
+        const titleElement = screen.getByTitle('close');
+        expect(titleElement).toBeInTheDocument();
+
+        //----------------------------------------------------------------------------
+
         const bioElement = screen.getByRole('textbox', {
             name: 'Bio',
         });
