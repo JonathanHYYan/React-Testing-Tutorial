@@ -40,6 +40,15 @@ describe('Application', ()=>{
         const idElement = screen.getByTestId('custom-element');
         expect(idElement).toBeInTheDocument();
 
+        // Query Priority ORder
+        // getByRole
+        // getbyLabelText
+        // getByPlaceholderText
+        // getByText
+        // getByDisplayValue
+        // getByAltText
+        // getByTitle
+
         //----------------------------------------------------------------------------
 
         const bioElement = screen.getByRole('textbox', {
