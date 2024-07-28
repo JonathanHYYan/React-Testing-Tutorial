@@ -48,6 +48,7 @@ describe('Application', ()=>{
         // getByDisplayValue
         // getByAltText
         // getByTitle
+        // getByTestId <-- Last resort.
 
         //----------------------------------------------------------------------------
 
