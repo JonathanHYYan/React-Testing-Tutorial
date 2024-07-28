@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Skills } from "./skills";
 
-describe('Skills', () => {
+describe('Skills', () => { 
     const skills = ['HTML', 'CSS', 'JavaScript'];
 
     test('renders correctly', () => {
@@ -17,4 +17,11 @@ describe('Skills', () => {
         // Checks the test data quantity is being rendered
         expect(listItemsElements).toHaveLength(skills.length);
     })
+
+    test('renders login button', () => {
+        render(<Skills skills={skills}/>)
+        const loginButton = screen.getByRole('button', {name:'Login'});
+        expect(loginButton).toBeInTheDocument();
+    })
+
 })
