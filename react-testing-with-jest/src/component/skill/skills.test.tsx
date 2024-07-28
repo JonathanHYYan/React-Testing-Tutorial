@@ -42,4 +42,10 @@ describe('Skills', () => {
         const learningStartButtonDelayed = await screen.findByRole('button', {name: 'Start Learning'}, {timeout: 2000});
         expect(learningStartButtonDelayed).toBeInTheDocument();
     })
+
+    // Manual Queries is using the regular querySelectorDom API to find elements.
+    // i.e. const = container.querySelector('[data-foo="bar"]')
+    // This is not recommended because it is not something an end user can
+    // To re-iterate the testing revolves around what the end user can
+    // See.
 })
