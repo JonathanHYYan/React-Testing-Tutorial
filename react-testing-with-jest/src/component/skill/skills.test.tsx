@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { logRoles, render, screen } from "@testing-library/react";
 import { Skills } from "./skills";
 
 describe('Skills', () => { 
@@ -35,17 +35,41 @@ describe('Skills', () => {
         expect(learningStartButton).not.toBeInTheDocument();
     })
 
-    test('Start Learning button eventually displayed', async () => {
-        render(<Skills skills={skills}/>)
-        // findByRole has a default timeout of 1000ms but you can set a time
-        // as shown below
-        const learningStartButtonDelayed = await screen.findByRole('button', {name: 'Start Learning'}, {timeout: 2000});
-        expect(learningStartButtonDelayed).toBeInTheDocument();
-    })
+    // test('Start Learning button eventually displayed', async () => {
+    //     render(<Skills skills={skills}/>)
+    //     // findByRole has a default timeout of 1000ms but you can set a time
+    //     // as shown below
+    //     // screen.debug();
+    //     const learningStartButtonDelayed = await screen.findByRole('button', {name: 'Start Learning'}, {timeout: 2000});
+    //     // The debug method shows you the DOM tree at that point in the code.
+    //     // This is a helpful way to see what is being rendered in real time
+    //     // Per line of code.
+    //     // screen.debug();
+    //     expect(learningStartButtonDelayed).toBeInTheDocument();
+    // })
 
     // Manual Queries is using the regular querySelectorDom API to find elements.
     // i.e. const = container.querySelector('[data-foo="bar"]')
     // This is not recommended because it is not something an end user can
     // To re-iterate the testing revolves around what the end user can
     // See.
+
+
+    // Using logRoles
+    test('Start Learning button eventually displayed', async () => {
+
+        // Great way to find your roles and names to write your test
+        // Queries with.
+        const view = render(<Skills skills={skills}/>)
+        logRoles(view.container);
+        // findByRole has a default timeout of 1000ms but you can set a time
+        // as shown below
+        // screen.debug();
+        const learningStartButtonDelayed = await screen.findByRole('button', {name: 'Start Learning'}, {timeout: 2000});
+        // The debug method shows you the DOM tree at that point in the code.
+        // This is a helpful way to see what is being rendered in real time
+        // Per line of code.
+        // screen.debug();
+        expect(learningStartButtonDelayed).toBeInTheDocument();
+    })
 })
