@@ -34,4 +34,12 @@ describe('Skills', () => {
         const learningStartButton = screen.queryByRole('button', {name:'Start Learning'});
         expect(learningStartButton).not.toBeInTheDocument();
     })
+
+    test('Start Learning button eventually displayed', async () => {
+        render(<Skills skills={skills}/>)
+        // findByRole has a default timeout of 1000ms but you can set a time
+        // as shown below
+        const learningStartButtonDelayed = await screen.findByRole('button', {name: 'Start Learning'}, {timeout: 2000});
+        expect(learningStartButtonDelayed).toBeInTheDocument();
+    })
 })
