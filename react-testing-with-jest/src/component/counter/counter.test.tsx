@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { getByRole, render, screen } from "@testing-library/react";
 import { Counter } from "./counter";
-import user from "@testing-library/user-event";
+import user, { userEvent } from "@testing-library/user-event";
 import { count } from "console";
 import { act } from "react-dom/test-utils";
 
@@ -57,5 +57,50 @@ describe("Counter", () => {
   // pointer('[MouseLeft[MouseRight]') <-- when only keytype is key a string will suffice
   // pointer('[MouseLeft>]') <-- left click and hold
   // pointer('[/MouseRight]') <-- release of left click
+
+
+  test("renders count of ten after clicking set button", async ()=>{
+    userEvent.setup();
+    render(<Counter/>);
+    // Input with type number's role is spinbutton
+    const amountInput = screen.getByRole('spinbutton');
+    await act(async ()=>{
+        await userEvent.type(amountInput, '10');
+    });
+
+    expect(amountInput).toHaveValue(10);
+
+    const amountButton = screen.getByRole('button', {name:"Set"});
+    await act( async ()=>{
+        await userEvent.click(amountButton);
+    });
+
+    const countElement = screen.getByRole('heading',{level: 1});
+    expect(countElement).toHaveTextContent('10');
+  });
+
+  test("elements are focused in the right order", async () => {
+    userEvent.setup();
+    render(<Counter/>);
+
+    const incrementButton = screen.getByRole('button', { name: 'Increment'});
+    await act( async ()=>{
+        await userEvent.tab();
+    });
+    expect(incrementButton).toHaveFocus();
+    
+    const amountInput = screen.getByRole('spinbutton');
+    await act( async ()=>{
+        await userEvent.tab();
+    });
+    expect(amountInput).toHaveFocus();
+
+    const setButton = screen.getByRole('button', {name: 'Set'});
+    await act( async ()=>{
+        await userEvent.tab();
+    });
+    expect(setButton).toHaveFocus();
+    
+  });
 
 });
