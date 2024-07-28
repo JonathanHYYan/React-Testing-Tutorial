@@ -23,5 +23,15 @@ describe('Skills', () => {
         const loginButton = screen.getByRole('button', {name:'Login'});
         expect(loginButton).toBeInTheDocument();
     })
-
+ 
+    test('Start Learning button is not rendered', () => {
+        render(<Skills skills={skills}/>)
+        // .not annotation in a getByRole will error the test because
+        // getByRole always errors when something is not rendered.
+        // const learningStartButton = screen.getByRole('button', {name:'Start Learning'});
+        // Here we use queryByRole which returns null if no elements match
+        // Rather than what is rendered in the DOM
+        const learningStartButton = screen.queryByRole('button', {name:'Start Learning'});
+        expect(learningStartButton).not.toBeInTheDocument();
+    })
 })
