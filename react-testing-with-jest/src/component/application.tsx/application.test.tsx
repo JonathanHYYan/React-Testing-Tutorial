@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { getByText, render, screen } from "@testing-library/react";
 import { Application } from "./application";
 
 describe('Application', ()=>{
@@ -27,6 +27,15 @@ describe('Application', ()=>{
 
         const paragraphElement = screen.getByText('All fields are mandatory');
         expect(paragraphElement).toBeInTheDocument();
+
+        const paragraphBySubString  = screen.getByText('All fields', {exact: false});
+        expect(paragraphBySubString).toBeInTheDocument();
+
+        const paragraphByRegex = screen.getByText(/all fields/i);
+        expect(paragraphByRegex).toBeInTheDocument();
+
+        const paragraphByFunction = screen.getByText((content) => content.startsWith('All'));
+        expect(paragraphByFunction).toBeInTheDocument();
 
         const inputByDisplay = screen.getByDisplayValue('Malle');
         expect(inputByDisplay).toBeInTheDocument();
