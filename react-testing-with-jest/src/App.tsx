@@ -1,11 +1,15 @@
-import './App.css';
-import { Application } from './component/application.tsx/application';
+import "./App.css";
+import { Application } from "./component/application.tsx/application";
+import { AppProviders } from "./providers/app-providers";
+import { MuiMode } from "./component/mui/mui-mode";
 
 function App() {
   return (
-    <div className="App">
-      <Application/>
-    </div>
+    <AppProviders>
+      <div className="App">
+        <MuiMode />
+      </div>
+    </AppProviders>
   );
 }
 
